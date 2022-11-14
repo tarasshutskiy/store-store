@@ -92,7 +92,7 @@ class GameShots(models.Model):
     game = models.ForeignKey(
         Game, verbose_name='Гра', on_delete=models.CASCADE
     )
-    image = models.ImageField('Зображення', upload_to='company/')
+    image = models.ImageField('Зображення', upload_to='gamesshots/')
 
     def __str__(self):
         return self.title
