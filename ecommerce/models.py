@@ -19,12 +19,14 @@ class Platform(models.Model):
 
 class GameLine(models.Model):
     '''Лінійка Гри'''
-    title = models.SlugField('Назва', max_length=120)
+    title = models.CharField('Назва', max_length=120)
     descriptions = models.TextField('Описання')
     image = models.ImageField('Зображення', upload_to='game_line/')
 
     def __str__(self):
         return self.title
+
+
 
     class Meta:
         verbose_name = 'Лінійка гри'
@@ -33,7 +35,7 @@ class GameLine(models.Model):
 
 class Company(models.Model):
     ''''''
-    title = models.SlugField('Назва', max_length=140)
+    title = models.CharField('Назва', max_length=140)
     descriptions = models.TextField('Описання')
     image = models.ImageField('Зображення', upload_to='company/')
 
@@ -47,12 +49,15 @@ class Company(models.Model):
 
 class Genre(models.Model):
     '''Жанр'''
-    title = models.SlugField('Назва', max_length=140)
+    title = models.CharField('Назва', max_length=140)
     descriptions = models.TextField('Описання')
     url = models.SlugField(max_length=120, unique=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('genres', kwargs={'genre_slug': self.url})
 
     class Meta:
         verbose_name = 'Жанр'
@@ -61,7 +66,7 @@ class Genre(models.Model):
 
 class Game(models.Model):
     '''Гра'''
-    title = models.SlugField('Назва', max_length=140)
+    title = models.CharField('Назва', max_length=140)
     games_line = models.ForeignKey(
         GameLine, verbose_name='Лінійка гри', on_delete=models.SET_NULL, null=True
     )
@@ -91,7 +96,7 @@ class Game(models.Model):
 
 class GameShots(models.Model):
     '''Зображення з гри'''
-    title = models.SlugField('Назва', max_length=140)
+    title = models.CharField('Назва', max_length=140)
     descriptions = models.TextField('Описання')
     game = models.ForeignKey(
         Game, verbose_name='Гра', on_delete=models.CASCADE

@@ -8,6 +8,7 @@ from .models import Platform, GameLine, Company, Genre, GameShots, Game, Comment
 class PlatformAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'url')
     list_display_links = ('title',)
+    prepopulated_fields = {"url": ("title",)}
 
 
 @admin.register(GameLine)
@@ -37,6 +38,7 @@ class CompanyAdmin(admin.ModelAdmin):
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'url')
     list_display_links = ('title',)
+    prepopulated_fields = {"url": ("title",)}
 
 
 @admin.register(Game)
@@ -66,12 +68,12 @@ class GameAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ('get_poster',)
+    prepopulated_fields = {"url": ("title",)}
 
     def get_poster(self, obj):
         return mark_safe(f'<img src={obj.poster.url} width="50" height="50"')
 
     get_poster.short_description = 'Image'
-
 
 
 @admin.register(GameShots)
