@@ -6,25 +6,82 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT-BOT</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body class="bg-dark text-white">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    {% include 'base/nav.html' %}
-</nav>
-
-<div id="wrap">
-    <div id="main" class="clearfix">
-        {% block content %}
-        {% endblock %}
-    </div>
+<body>
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fa fa-bars" id="btn"></i>
+</label>
+<div class="sidebar">
+    <label for="check">
+    <header  id="header">My App</header>
+    </label>
+    <form action="{% url 'filter' %}" method="get">
+        <ul>
+            <li><a class="dropdown-btn"><i class="fa fa-gamepad"></i>Platformes</a>
+                <div class="dropdown-container">
+                    {% for platform in view.get_platforms %}
+                        <a href="#"><input type="checkbox" class="check" name="platform" value="{{ platform.id }}">{{ platform.title }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li><a class="dropdown-btn"><i class="fa fa-book"></i>Genres</a>
+                <div class="dropdown-container">
+                    {% for genre in view.get_genres%}
+                        <a href="#"><input type="checkbox" class="check" name="genre" value="{{ genre.id }}">{{ genre.title }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li><a class="dropdown-btn"><i class="fa fa-calendar"></i>Year</a>
+                <div class="dropdown-container">
+                    {% for game in view.get_years %}
+                        <a href="#"><input type="checkbox" class="check" name="year" value="{{ game.year }}">{{ game.year }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+        <button id="button" type="submit" >Search</button>
+    </form>
 </div>
+<section>
+    {% block content %}
 
-<footer id="f">
-    {% include 'base/footer.html' %}
-</footer>
+    {% endblock %}
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+
+
+
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
