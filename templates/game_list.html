@@ -3,30 +3,34 @@
 
 {% block content %}
 
-  <div class="container">
-      <div class="row centered">
-        <h4><i class="fa fa-clipboard" aria-hidden="true"></i>POSTS<i class="fa fa-clipboard" aria-hidden="true"></i></h4>
-        <br>
-        <br>
-        <br>
-        {% for game in game_list %}
-        <div class="col-lg-3 truncate-text ">
-        <div class="card-body">
-          <div >
-            <a href="{{ game.get_absolute_url }}"><img  src="{{game.poster.url}}" alt="" width="130" height="180"></a>
-          </div>
-            <div>
-          <h2>{{ game.title }}</h2>
-             <button type="button" class="btn btn-sm btn-outline-secondary btn-info" ><a class="text-dark" href="#">{{ game.price }}</a></button>
-            </div></div>
-          <br>
-          <br>
-          <br>
 
+
+
+<div class="container">
+        <div class="row">
+            {% for game in game_list %}
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="product-card">
+                    <div class="product-thumb">
+                        <a href="{{ game.get_absolute_url }}"><img src="{{game.poster.url}}" alt=""></a>
+                    </div>
+                    <div class="product-details">
+                        <h4><a href="{{game.poster.url}}">{{ game.title }}</a></h4>
+                        <p>{{ game.company}}</p>
+                        <div class="product-bottom-details d-flex justify-content-between">
+                            <div class="product-price">
+                                <small>$230.99</small>{{ game.price }}
+                            </div>
+                            <div class="product-links">
+                                <a href=""><i class="fas fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endfor %}
         </div>
-        {% endfor %}
-      </div>
-  </div>
+    </div>
 
 
 <aside id="pag">

@@ -21,7 +21,7 @@ class PlatformGenreYear:
 class GameView(PlatformGenreYear, ListView):
     ''''''
     model = Game
-    # paginate_by = 3
+    paginate_by = 6
     queryset = Game.objects.filter(draft=False)
     template_name = "game_list.html"
     context_object_name = 'game_list'

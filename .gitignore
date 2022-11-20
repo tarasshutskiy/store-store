@@ -18,8 +18,8 @@ __pycache__/
 *.pyc
 
 !*media/.gitkeep
-/media
-/static
+media/
+
 
 log/debug.log
 

@@ -4,7 +4,8 @@
 
 {% block content %}
 
-<div class="container truncate-text" id="box">
+<div class="container">
+<div class="row">
     <div class="featurette text-center" id="card">
         <img src="{{ game.poster.url }}" class="bd-placeholder-img rounded-circle" width="250" height="250" >
         <h1 class="featurette-heading "> post_detail.name  <br></h1>
@@ -29,6 +30,11 @@
     <p class="featurette-heading ">Date and time of creation: post_detail.time_create|date:"d-m-Y H:i:s" <br></p>
     <p class="featurette-heading ">Date and time of last update: post_detail.time_update<br></p>
 </div>
+</div>
+
+
+
+
 <div class="container truncate-text" id="comment">
     <h2 class="text-center"><i class="fa fa-clipboard" aria-hidden="true"></i>Comments<i class="fa fa-clipboard" aria-hidden="true"></i></h2>
     <br>

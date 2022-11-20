@@ -6,53 +6,203 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT-BOT</title>
-{#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<input type="checkbox" id="check">
-<label for="check">
-    <i class="fa fa-bars" id="btn"></i>
-</label>
-<div class="sidebar">
-    <label for="check">
-    <header  id="header">My App</header>
-    </label>
-    <form action="{% url 'filter' %}" method="get">
-        <ul>
-            <li><a class="dropdown-btn"><i class="fa fa-gamepad"></i>Platformes</a>
-                <div class="dropdown-container">
-                    {% for platform in view.get_platforms %}
-                        <a href="#"><input type="checkbox" class="check" name="platform" value="{{ platform.id }}">{{ platform.title }}</a>
-                    {% endfor %}
-                </div>
-            </li>
-            <li><a class="dropdown-btn"><i class="fa fa-book"></i>Genres</a>
-                <div class="dropdown-container">
-                    {% for genre in view.get_genres%}
-                        <a href="#"><input type="checkbox" class="check" name="genre" value="{{ genre.id }}">{{ genre.title }}</a>
-                    {% endfor %}
-                </div>
-            </li>
-            <li><a class="dropdown-btn"><i class="fa fa-calendar"></i>Year</a>
-                <div class="dropdown-container">
-                    {% for game in view.get_years %}
-                        <a href="#"><input type="checkbox" class="check" name="year" value="{{ game.year }}">{{ game.year }}</a>
-                    {% endfor %}
-                </div>
-            </li>
-        </ul>
-        <button id="button" type="submit" >Search</button>
-    </form>
-</div>
-<section>
-    {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">G-Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">News</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Contacts</a>
+        </li>
+      </ul>
 
-    {% endblock %}
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" href="#" ><i class="far fa-user"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+            </ul>
+            </li>
+            <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-cart"><i class="fas fa-shopping-cart"></i></a>
+                <div class="modal fade" id="modal-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header bg-secondary text-white">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Корзина</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <table class="table">
+                              <tbody>
+                                <tr>
+                                  <td><img src="{% static 'img/mon.png' %}" alt=""></td>
+                                  <td><a href="">Lenovo Ideapad 3</a></td>
+                                  <td>$599.00</td>
+                                  <td>1</td>
+                                </tr>
+                              <tr>
+                                  <td><img src="{% static 'img/mon.png' %}" alt=""></td>
+                                  <td><a href="">Lenovo Ideapad 3</a></td>
+                                  <td>$599.00</td>
+                                  <td>1</td>
+                                </tr>
+                              <tr>
+                                  <td><img src="{% static 'img/mon.png' %}" alt=""></td>
+                                  <td><a href="">Lenovo Ideapad 3</a></td>
+                                  <td>$599.00</td>
+                                  <td>1</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+            </li>
+            <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
+        </li>
+
+        </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container-fluid my-carousel">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="true" data-bs-interval="5000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/fon.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/reg.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/welcome.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+
+
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-6">
+                    <h4>Info</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+                 <div class="col-md-4 col-6">
+                    <h4>Щось</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+                 <div class="col-md-4 col-6">
+                    <h4>Час роботи</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<section class="main-content">
+{% block content %}
+{% endblock %}
 </section>
 
 
+<footer>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <h4>Info</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+                 <div class="col-md-3 col-6">
+                    <h4>Щось</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+                 <div class="col-md-3 col-6">
+                    <h4>Час роботи</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Головна</a></li>
+                        <li><a href="">Контакти</a></li>
+                        <li><a href="">Магазин</a></li>
+                        <li><a href="">Просто</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
 
 
 
@@ -61,31 +211,7 @@
 
 
 
-
-<script>
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-
-
-
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
 </body>
 </html>
