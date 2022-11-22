@@ -8,6 +8,7 @@ from .models import Game, Genre, Platform
 
 
 class PlatformGenreYear:
+    """Фільтр відображення на сторінці"""
     def get_genres(self):
         return Genre.objects.all()
 
@@ -22,7 +23,7 @@ class PlatformGenreYear:
 
 
 class GameView(PlatformGenreYear, ListView):
-    ''''''
+    '''Список Ігр'''
     model = Game
     paginate_by = 6
     queryset = Game.objects.filter(draft=False)
@@ -41,14 +42,37 @@ class GameView(PlatformGenreYear, ListView):
             return game_list
 
 
+class PlatformView(PlatformGenreYear, ListView):
+    '''Список ігор по платформі'''
+    model = Game
+    queryset = Game.objects.filter(draft=False)
+    template_name = "platform_list.html"
+    context_object_name = 'platform'
+
+    def get_queryset(self):
+        return Game.objects.filter(platform__url=self.kwargs['platform_slug'])
+
+
+class GenreView(PlatformGenreYear, ListView):
+    '''Список ігор по жанрам'''
+    model = Game
+    queryset = Game.objects.filter(draft=False)
+    template_name = "genres_list.html"
+    context_object_name = 'genres'
+
+    def get_queryset(self):
+        return Game.objects.filter(genres__url=self.kwargs['genres_slug'])
+
+
 class GameDetailView(PlatformGenreYear, DetailView):
-    ''''''
+    '''Деталізація ігри'''
     model = Game
     slug_field = 'url'
     template_name = "game_detail.html"
 
 
 class FilterGameView(PlatformGenreYear, ListView):
+    """Робота фільтру"""
     template_name = "game_list.html"
 
     def get_queryset(self):

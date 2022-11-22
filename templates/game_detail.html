@@ -5,53 +5,72 @@
 {% block content %}
 
 <div class="container">
-<div class="row">
-    <div class="featurette text-center" id="card">
-        <img src="{{ game.poster.url }}" class="bd-placeholder-img rounded-circle" width="250" height="250" >
-        <h1 class="featurette-heading "> post_detail.name  <br></h1>
-        <hr class="featurette-divider">
+    <div class="row">
+         <div class="col-lg-0 col-sm-0 mb-3">
+             <div class="product-card-details">
+                 <div class="product-thumb">
+                     <a href="{{ game.get_absolute_url }}"><img src="{{game.poster.url}}" alt=""></a>
+                 </div>
+                 <div class="product-details ">
+
+                     <h4 class="border-bottom"><a href="{{game.poster.url}}">{{ game.title }}</a></h4>
+                     <h6> <b>Про Ігру:</b></br>
+                     <p></br>
+                         {% for image in game.gameshots_set.all %}
+                             <a href="{{ image.image.url}}" ><img src="{{ image.image.url}}" alt="{{ image.descriptions }}"></a>
+                         {% endfor %}
+                        </p></br>
+                     </h6>
+                     <p><b>Компанія: </b>{{ game.company }}     <img src="{{ game.company.image.url}}" alt="{{ image.descriptions }}"></p></br>
+                     <p><b>Лінійка ігор:</b> {{ game.games_line }}    <img src="{{ game.games_line.image.url}}" alt="{{ image.descriptions }}"></p></br>
+                     <p><b>Доступно на:</b>
+                         {% for platform in game.platform.all %}
+                             <a href="{{ platform.get_absolute_url  }}"><button type="submit" class="btn btn-success btn-details" >{{ platform.title }}</button></a>
+                        {% endfor %}
+                     </p>
+                     <p><b>Жанри:</b>
+                         {% for genre in game.genres.all %}
+                            <a href="{{ genre.get_absolute_url  }}"><button type="submit" class="btn btn-success btn-details" >{{ genre.title }}</button></a>
+                        {% endfor %}
+                     </p>
+                     <p><b>Країна:</b> {{ game.country }}</p>
+                     <b>Опис:</b></br> {{ game.descriptions }} </br></br>
+                     <p><b>Рік випуску:</b> {{ game.year }}</p>
+                     <div class="product-bottom-details d-flex justify-content-between">
+                         <div class="product-price">
+                             <span>Price: </span>$ {{ game.price }}
+                         </div>
+                         <div class="product-links">
+                             <a href=""><button type="submit" class="btn btn-success" >Buy now!</button></a>
+                             <a href=""><i class="fas fa-shopping-cart"></i></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
     </div>
-    <div class=" text-center ">
-        <h2 class="featurette-heading  text-center">Description<br></h2>
-        <div >
-            <h4>-<br>post_detail.description</h4>
-        </div>
-    </div>
-    <hr class="featurette-divider">
-    <div class="featurette ">
-        <h2 class="featurette-heading clip text-center">Code!<br></h2>
-        <br>
-        <div class = "title_code  text-center">
-            <h3>Example</h3>
-        </div>
-        <pre><code class="python">post_detail.description_cod</code></pre>
-    </div>
-    <hr class="featurette-divider">
-    <p class="featurette-heading ">Date and time of creation: post_detail.time_create|date:"d-m-Y H:i:s" <br></p>
-    <p class="featurette-heading ">Date and time of last update: post_detail.time_update<br></p>
-</div>
 </div>
 
 
 
 
-<div class="container truncate-text" id="comment">
-    <h2 class="text-center"><i class="fa fa-clipboard" aria-hidden="true"></i>Comments<i class="fa fa-clipboard" aria-hidden="true"></i></h2>
-    <br>
-    <form class="form-label" action="#" method="post" >
-        {% csrf_token %}
-        {{form.as_p}}
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">Add a comment</button>
-        </div>
-    </form>
-    <hr class="featurette-divider">
-    <h3>Comments:</h3>
-    {% for comment in post_detail.comments.all %}
-    <h3><i class="fa fa-user-circle-o" aria-hidden="true"></i> comment.author</h3><span class="featurette-heading  text-center"> comment.comment</span>
-    <p><span class="featurette-heading ">Date and time of creation: comment.time_create|date:"d-m-Y H:i:s" <br></span></p>
-    <hr class="featurette-divider">
-    {% endfor %}
-</div>
+{#    <div class="container truncate-text" id="comment">#}
+{#        <h2 class="text-center"><i class="fa fa-clipboard" aria-hidden="true"></i>Comments<i class="fa fa-clipboard" aria-hidden="true"></i></h2>#}
+{#        <br>#}
+{#        <form class="form-label" action="#" method="post" >#}
+{#            {% csrf_token %}#}
+{#            {{form.as_p}}#}
+{#            <div class="text-center">#}
+{#                <button class="btn btn-primary" type="submit">Add a comment</button>#}
+{#            </div>#}
+{#        </form>#}
+{#        <hr class="featurette-divider">#}
+{#        <h3>Comments:</h3>#}
+{#        {% for comment in post_detail.comments.all %}#}
+{#            <h3><i class="fa fa-user-circle-o" aria-hidden="true"></i> comment.author</h3><span class="featurette-heading  text-center"> comment.comment</span>#}
+{#            <p><span class="featurette-heading ">Date and time of creation: comment.time_create|date:"d-m-Y H:i:s" <br></span></p>#}
+{#            <hr class="featurette-divider">#}
+{#        {% endfor %}#}
+{#    </div>#}
 
 {% endblock %}

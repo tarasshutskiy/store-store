@@ -59,13 +59,18 @@ html{
 	font-size: 16px;
 }
 body{
+	background: url(../img/fon.jpg) no-repeat center fixed;
+	background-position: center;
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
 	color: #000000;
-	background-color: #fff;
 	min-width: 320px ;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+
 img{
 	max-width: 100%;
 	height: auto;
@@ -81,7 +86,11 @@ a:hover{
 }
 
 /*Header*/
+nav{
+	background: rgba(255,255,255,1);
+}
 .navbar-light .navbar-nav .nav-link{
+
 	color: #111;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -123,6 +132,7 @@ a:hover{
 
 /*Section*/
 .product-card{
+	background: rgba(255,255,255,0.6);
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.06);
 	transition: all .3s;
 }
@@ -176,6 +186,95 @@ a:hover{
 .product-links a{
 	font-size: 20px;
 	margin-left: 10px;
+}
+
+
+/*Product Details*/
+.product-card-details{
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.06);
+	transition: all .3s;
+}
+.product-card-details:hover{
+	box-shadow: 0 14px 30px -15px rgba(0,0,0,0.75);
+}
+.product-thumb a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
+	padding: 20px;
+}
+.product-thumb img{
+	max-width: 100%;
+	max-height: 100%;
+}
+.product-details{
+	padding: 20px;
+}
+.product-details h4 a{
+	font-weight: 500;
+	display: block;
+	height: 60px;
+	overflow: hidden;
+	text-decoration: none;
+}
+.product-details h6 img{
+	font-size: 15px;
+	margin-bottom: 30px;
+	height: 130px;
+	overflow: hidden;
+	text-decoration: none;
+}
+.product-details p{
+	font-size: 15px;
+	margin-bottom: 0;
+	color: #111111;
+	height: 44px;
+	overflow: hidden;
+}
+.product-details h6 p{
+	height: 130px;
+	max-width: 100%;
+	max-height: 100%;
+}
+.product-details h6 p{
+	height: 130px;
+	max-width: 100%;
+	max-height: 100%;
+}
+.product-details img{
+	height: 60px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+.product-bottom-details{
+	overflow: hidden;
+	border-top: 1px solid #eee;
+	padding-top: 20px;
+}
+.product-price{
+	font-size: 18px;
+	color: #ee6e73;
+	font-weight: 600;
+}
+.product-price small{
+	color: #ccc;
+	font-weight: 400;
+	text-decoration: line-through;
+	margin-right: 5px;
+}
+.product-price span {
+	color: black;
+}
+.product-links a{
+	font-size: 20px;
+	margin-left: 10px;
+}
+.btn-details{
+	font-size: 15px;
 }
 
 

@@ -16,6 +16,8 @@ class Platform(models.Model):
         verbose_name = 'Платформа'
         verbose_name_plural = 'Платформи'
 
+    def get_absolute_url(self):
+        return reverse('platform', kwargs={'platform_slug': self.url})
 
 class GameLine(models.Model):
     '''Лінійка Гри'''
@@ -57,7 +59,7 @@ class Genre(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('genres', kwargs={'genre_slug': self.url})
+        return reverse('genres', kwargs={'genres_slug': self.url})
 
     class Meta:
         verbose_name = 'Жанр'
