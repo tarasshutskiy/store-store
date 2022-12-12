@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
+from django.http import HttpResponse
 
 from .models import Game, Genre, Platform
 
@@ -85,3 +86,9 @@ class FilterGameView(PlatformGenreYear, ListView):
         return queryset
 
 
+def login(request):
+    return render(request,'login.html')
+
+
+def register(request):
+    return render(request,'register.html')
