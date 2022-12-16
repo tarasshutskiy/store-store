@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+
 from django.db import models
 from django.urls import reverse
 
@@ -113,22 +113,3 @@ class GameShots(models.Model):
         verbose_name_plural = 'Зображення з ігор'
 
 
-class Comment(models.Model):
-    '''Комантарі'''
-    game = models.ForeignKey(
-        Game, verbose_name='Гра', on_delete=models.CASCADE
-    )
-    comment = models.CharField("Коментарій", max_length=150)
-    author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='Автор',
-    )
-    time_create = models.DateTimeField("Час створення", auto_now_add=True)
-
-    def __str__(self):
-        return self.comment
-
-    class Meta:
-        verbose_name = "Коментарій"
-        verbose_name_plural = "Коментарії"

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Platform, GameLine, Company, Genre, GameShots, Game, Comment
+from .models import Platform, GameLine, Company, Genre, GameShots, Game
 
 
 @admin.register(Platform)
@@ -81,6 +81,3 @@ class GameShotsAdmin(admin.ModelAdmin):
     list_display = ('title', 'game')
 
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('game', 'author', 'time_create')
