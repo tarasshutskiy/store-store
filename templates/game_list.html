@@ -3,29 +3,29 @@
 
 {% block content %}
 
-<div class="container">
+    <div class="container">
         <div class="row">
             {% for game in game_list %}
-            <div class="col-lg-2 col-sm-6 mb-3">
-                <div class="product-card">
-                    <div class="product-thumb">
-                        <a href="{{ game.get_absolute_url }}"><img src="{{game.poster.url}}" alt=""></a>
-                    </div>
-                    <div class="product-details ">
-                        <h4 class="border-bottom"><a href="{{game.poster.url}}">{{ game.title }}</a></h4>
-                        <p>Company: {{ game.company}} </p>
-                        <p>Line:{{ game.games_line}}</p>
-                        <div class="product-bottom-details d-flex justify-content-between">
-                            <div class="product-price">
-                                ${{ game.price }}
-                            </div>
-                            <div class="product-links">
-                                <a href=""><i class="fas fa-shopping-cart"></i></a>
+                <div class="col-lg-2 col-sm-6 mb-3">
+                    <div class="product-card">
+                        <div class="product-thumb">
+                            <a href="{{ game.get_absolute_url }}"><img src="{{ game.poster.url }}" alt=""></a>
+                        </div>
+                        <div class="product-details ">
+                            <h4 class="border-bottom"><a href="{{ game.poster.url }}">{{ game.title }}</a></h4>
+                            <p>Company: {{ game.company }} </p>
+                            <p>Line:{{ game.games_line }}</p>
+                            <div class="product-bottom-details d-flex justify-content-between">
+                                <div class="product-price">
+                                    ${{ game.price }}
+                                </div>
+                                <div class="product-links">
+                                    <a href=""><i class="fas fa-shopping-cart"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>

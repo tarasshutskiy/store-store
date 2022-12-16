@@ -87,8 +87,16 @@ class FilterGameView(PlatformGenreYear, ListView):
 
 
 def login(request):
-    return render(request,'login.html')
+    return render(request, 'login.html')
 
 
 def register(request):
-    return render(request,'register.html')
+    return render(request, 'register.html')
+
+
+def profile(request):
+    return render(request, 'profile.html')
+
+
+def cart(request):
+    return render(request, 'cart.html')

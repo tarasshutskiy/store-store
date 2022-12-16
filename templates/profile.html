@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+            <div class="card">
+                <div class="rounded-top text-white d-flex flex-row"
+                     style="background-color: #000; height:200px;">
+                    <div class="ms-4 mt-5 d-flex flex-column text-center" style="width: 150px;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                             style="width: 150px; z-index: 1">
+                        <div class="input-group mb-3">
+                            <input type="file" class="custom-file-input" id="userAvatar" size="50">
+                        </div>
+                    </div>
+                    <div class="ms-3" style="margin-top: 130px;">
+                        <h5>Your Profile</h5>
+                    </div>
+                </div>
+                <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                    <div class="d-flex justify-content-end text-center py-1">
+                    </div>
+                </div>
+                <div class="card-body p-4 text-black">
+                    <div class="mb-5">
+                        <p class="lead fw-normal mb-1">Information</p>
+                        <form action="">
+                            <div class="form-row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="inputFirstName">First Name:</label>
+                                        <input class="form-control py-4" id="inputFirstName" type="text"
+                                               value=""/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="inputLastName">Last Name:</label>
+                                        <input class="form-control py-4" id="inputLastName" type="text"
+                                               value=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-2">
+                                <div class="col-lg-12">
+                                    <div class="form-row">
+                                        <div class="col-lg-12">
+                                            <label class="small mb-1" for="inputUsername">Nickname:</label>
+                                            <input class="form-control py-4" id="inputUsername" type="text"
+                                                   aria-describedby="usernameHelp"
+                                                   value="shapik" disabled/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="small mb-1" for="inputEmailAddress">Email:</label>
+                                            <input class="form-control py-4" id="inputEmailAddress" type="email"
+                                                   aria-describedby="emailHelp"
+                                                   value="shapiktaras@google.com" disabled/>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-lg-12" style="margin-top: 33px;">
+                                            <input class="btn btn-info btn-block" type="submit"
+                                                   value="Save">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
