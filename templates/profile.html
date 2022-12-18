@@ -15,12 +15,9 @@
                 <div class="rounded-top text-white d-flex flex-row"
                      style="background-color: #000; height:200px;">
                     <div class="ms-4 mt-5 d-flex flex-column text-center" style="width: 150px;">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                        <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'img/foto.jpg' %}{% endif %}"
                              alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                              style="width: 150px; z-index: 1">
-                        <div class="input-group mb-3">
-                            <input type="file" class="custom-file-input" id="userAvatar" size="50">
-                        </div>
                     </div>
                     <div class="ms-3" style="margin-top: 130px;">
                         <h5>Your Profile</h5>
@@ -33,20 +30,25 @@
                 <div class="card-body p-4 text-black">
                     <div class="mb-5">
                         <p class="lead fw-normal mb-1">Information</p>
-                        <form action="">
+                        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="form-row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="inputFirstName">First Name:</label>
-                                        <input class="form-control py-4" id="inputFirstName" type="text"
-                                               value=""/>
+                                        <label class="small mb-1" for="{{ form.image.id_for_label }}">Image:</label>
+                                        {{ form.image }}
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="inputLastName">Last Name:</label>
-                                        <input class="form-control py-4" id="inputLastName" type="text"
-                                               value=""/>
+                                        <label class="small mb-1" for="{{ form.first_name.id_for_label }}">First Name:</label>
+                                        {{ form.first_name }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                                        {{ form.last_name }}
                                     </div>
                                 </div>
                             </div>
@@ -54,16 +56,12 @@
                                 <div class="col-lg-12">
                                     <div class="form-row">
                                         <div class="col-lg-12">
-                                            <label class="small mb-1" for="inputUsername">Nickname:</label>
-                                            <input class="form-control py-4" id="inputUsername" type="text"
-                                                   aria-describedby="usernameHelp"
-                                                   value="shapik" disabled/>
+                                            <label class="small mb-1" for="{{ form.username.id_for_label }}">Username:</label>
+                                            {{ form.username }}
                                         </div>
                                         <div class="col-lg-12">
-                                            <label class="small mb-1" for="inputEmailAddress">Email:</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email"
-                                                   aria-describedby="emailHelp"
-                                                   value="shapiktaras@google.com" disabled/>
+                                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Email:</label>
+                                            {{ form.email }}
                                         </div>
                                     </div>
                                     <div class="form-row">
