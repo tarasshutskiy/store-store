@@ -4,6 +4,8 @@ from django.urls import reverse
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from .models import UserCustom
 from django.contrib import auth
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 
 
@@ -37,7 +39,7 @@ def register(request):
 
 def profile(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(instance=request.user, data=request.POST, files=request.FILES)
+        form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('profile'))
@@ -45,6 +47,11 @@ def profile(request):
         form = UserProfileForm(instance=request.user)
     context = {'form': form}
     return render(request, 'profile.html', context)
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('game_list')
 
 
 def cart(request):
